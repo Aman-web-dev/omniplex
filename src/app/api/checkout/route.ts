@@ -9,7 +9,7 @@ export async function POST(req:any,res:any){
 
 const stripe = new Stripe(STRIPE_API_KEY);
 
-console.log(STRIPE_API_KEY,YOUR_DOMAIN,PRICE_ID);
+console.log("ENV VAriables---",STRIPE_API_KEY,YOUR_DOMAIN,PRICE_ID);
 
 
   const session = await stripe.checkout.sessions.create({
