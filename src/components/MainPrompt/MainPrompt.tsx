@@ -1,5 +1,5 @@
 "use client";
-
+import ProductDisplay from "../Stripe/CheckoutButton";
 import React, { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import styles from "./MainPrompt.module.css";
@@ -234,7 +234,11 @@ const MainPrompt = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>Where Knowledge Evolves</div>
+      <div className={styles.title}><p>Where Knowledge Evolves</p>
+
+<ProductDisplay/>
+
+      </div>
       <div className={styles.promptContainer}>
         <textarea
           placeholder="Ask anything..."
