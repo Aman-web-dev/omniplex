@@ -6,6 +6,8 @@ const YOUR_DOMAIN = process.env.HOSTED_DOMAIN;
 const PRICE_ID = process.env.PRICE_ID;
 
 
+console.log(STRIPE_API_KEY,YOUR_DOMAIN,PRICE_ID);
+
 const stripe = new Stripe(STRIPE_API_KEY);
 
 export async function POST(req:any,res:any){
