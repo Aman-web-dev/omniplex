@@ -1,5 +1,5 @@
-const stripe = require('stripe')(process.env.STRIPE_API_KEY);
-
+import Stripe from 'stripe';
+const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 const YOUR_DOMAIN = process.env.HOSTED_DOMAIN;
 const PRICE_ID = process.env.PRICE_ID;
@@ -17,7 +17,7 @@ export async function POST(req:any,res:any){
     cancel_url: `${YOUR_DOMAIN}?canceled=true`,
   });
 
-return Response.redirect(session.url, 303);
+return Response.redirect(session.url || `${YOUR_DOMAIN}/payment?success=false`, 303);
 }
 
 
