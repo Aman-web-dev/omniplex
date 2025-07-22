@@ -2,9 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
-const stripe = require('stripe')(process.env.STRIPE_API_KEY).then(()=>{
-  console.log("Stripe Working ")
-});
+const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
 
 // Firebase Config
