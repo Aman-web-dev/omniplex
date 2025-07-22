@@ -1,31 +1,25 @@
 import Stripe from 'stripe';
+import { NextResponse } from 'next/server';
 
+const stripe = new Stripe(process.env.STRIPE_API_KEY!, {
+  apiVersion: '2025-06-30.basil', 
+});
 
-const STRIPE_API_KEY=process.env.NEXT_PUBLIC_STRIPE_API_KEY as string
-const YOUR_DOMAIN = process.env.NEXT_PUBLIC_HOSTED_DOMAIN;
-const PRICE_ID = process.env.NEXT_PUBLIC_PRICE_ID;
+const YOUR_DOMAIN = process.env.HOSTED_DOMAIN!;
+const PRICE_ID = process.env.PRICE_ID!;
 
-export async function POST(req:any,res:any){
+export async function POST(req: Request) {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [{ price: PRICE_ID, quantity: 1 }],
+      mode: 'subscription',
+      success_url: `${YOUR_DOMAIN}?success=true`,
+      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+    });
 
-const stripe = new Stripe(STRIPE_API_KEY);
-
-console.log("ENV VAriables---",STRIPE_API_KEY,YOUR_DOMAIN,PRICE_ID);
-
-
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price: PRICE_ID,
-        quantity: 1,
-      },
-    ],
-    mode: 'subscription',
-    success_url: `${YOUR_DOMAIN}?success=true`,
-    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
-  });
-
-return Response.redirect(session.url || `${YOUR_DOMAIN}/payment?success=false`, 303);
+    return NextResponse.redirect(session.url!, { status: 303 });
+  } catch (err) {
+    console.error('Stripe error:', err);
+    return NextResponse.json({ error: 'Checkout failed' }, { status: 500 });
+  }
 }
-
-
-
