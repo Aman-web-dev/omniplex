@@ -12,6 +12,7 @@ While integrating Stripe into the Omniplex AI project, several technical challen
 
     
 yarn install --ignore-engines --force --legacy-peer-deps
+```
 
 
 
@@ -36,6 +37,19 @@ yarn install --ignore-engines --force --legacy-peer-deps
 - **Problem**: AWS Amplify was not injecting environment variables correctly during deployment, causing runtime issues.
 - **Fix**: Added the `NEXT_PUBLIC_` prefix to all required environment variable names to ensure they were properly exposed and usable during both build and deployment.
 
+
+```bash
+NEXT_PUBLIC_HOSTED_DOMAIN=
+NEXT_PUBLIC_STRIPE_API_KEY=
+NEXT_PUBLIC_PRICE_ID=
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=
+``` 
 
 
 
