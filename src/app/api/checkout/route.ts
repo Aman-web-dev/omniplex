@@ -1,19 +1,16 @@
-import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
+import { stripe } from '../../../../firebaseConfig';
 
 
 
 const YOUR_DOMAIN = process.env.HOSTED_DOMAIN!;
 const PRICE_ID = process.env.PRICE_ID!;
 
-export async function POST(req: Request) {
-  const stripe = new Stripe(process.env.STRIPE_API_KEY!, {
-  apiVersion: '2025-06-30.basil', 
-});
 
+export async function POST(req: Request) {
 
   try {
-    const session = await stripe.checkout.sessions.create({
+const session = await stripe.checkout.sessions.create({
       line_items: [{ price: PRICE_ID, quantity: 1 }],
       mode: 'subscription',
       success_url: `${YOUR_DOMAIN}?success=true`,

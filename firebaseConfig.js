@@ -2,6 +2,11 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
+const stripe = require('stripe')(process.env.STRIPE_API_KEY).then(()=>{
+  console.log("Stripe Working ")
+});
+
+
 // Firebase Config
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -18,7 +23,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { db, storage };
+export { db, storage,stripe };
 
 export const initializeFirebase = () => {
   return app;
