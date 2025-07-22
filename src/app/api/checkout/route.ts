@@ -3,8 +3,8 @@ import { stripe } from '../../../../firebaseConfig';
 
 
 
-const YOUR_DOMAIN = process.env.HOSTED_DOMAIN!;
-const PRICE_ID = process.env.PRICE_ID!;
+const YOUR_DOMAIN = process.env.NEXT_PUBLIC_HOSTED_DOMAIN!;
+const PRICE_ID = process.env.NEXT_PUBLIC_PRICE_ID!;
 
 
 export async function POST(req: Request) {
