@@ -9,6 +9,8 @@ While integrating Stripe into the Omniplex AI project, several technical challen
 - **Problem**: Encountered peer dependency errors due to outdated dependencies when installing packages.
 - **Fix**: Resolved the issue by running:
 ```bash
+
+    
 yarn install --ignore-engines --force --legacy-peer-deps
 
 
