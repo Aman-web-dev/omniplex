@@ -1,8 +1,12 @@
 import Stripe from 'stripe';
-const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
+
+const STRIPE_API_KEY=process.env.STRIPE_API_KEY as string
 const YOUR_DOMAIN = process.env.HOSTED_DOMAIN;
 const PRICE_ID = process.env.PRICE_ID;
+
+
+const stripe = new Stripe(STRIPE_API_KEY);
 
 export async function POST(req:any,res:any){
       const session = await stripe.checkout.sessions.create({
